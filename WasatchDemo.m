@@ -14,14 +14,16 @@ end
 % open the first spectrometer found
 spectrometer = driver.getSpectrometer(0);
 
-% display some key parameters
-%modelName = char(spectrometer.model);
+% access some key properties
+pixels = spectrometer.pixels;
 modelName = char(spectrometer.model);
 serialNum = char(spectrometer.serialNumber);
-pixels = spectrometer.pixels;
 wavelengths = spectrometer.wavelengths;
-%disp(['Found ', modelName, ' ', serialNum, ' with ', pixels, ' (', wavelengths(1), 'nm to ', wavelengths(wavelengths.Length), 'nm)']);
-fprintf('Found %s %s with %d pixels (%.2f, %.2fnm)\n', modelName, serialNum, pixels, wavelengths(1), wavelengths(wavelengths.Length));
+
+% display summary
+fprintf('Found %s %s with %d pixels (%.2f, %.2fnm)\n', 
+    modelName, serialNum, pixels, 
+    wavelengths(1), wavelengths(wavelengths.Length));
 
 % get a spectrum
 spectrometer.integrationTimeMS = 100;
