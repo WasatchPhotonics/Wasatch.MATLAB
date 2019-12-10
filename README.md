@@ -40,6 +40,8 @@ wherever you want after openAllSpectrometers() completes.)
 
 # History
 
+- 2019-12-10
+    - updated .m script
 - 2019-12-09
     - resolved secondaryADC issues (Wasatch.NET 2.1.4)
 - 2019-12-06
