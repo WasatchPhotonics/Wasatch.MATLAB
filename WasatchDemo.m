@@ -15,15 +15,18 @@ end
 spectrometer = driver.getSpectrometer(0);
 
 % access some key properties
-pixels = spectrometer.pixels;
-modelName = char(spectrometer.model);
-serialNum = char(spectrometer.serialNumber);
+pixels      = spectrometer.pixels;
+modelName   = char(spectrometer.model);
+serialNum   = char(spectrometer.serialNumber);
 wavelengths = spectrometer.wavelengths;
 
 % display summary
 fprintf('Found %s %s with %d pixels (%.2f, %.2fnm)\n', 
-    modelName, serialNum, pixels, 
-    wavelengths(1), wavelengths(wavelengths.Length));
+    modelName, 
+    serialNum, 
+    pixels, 
+    wavelengths(1), 
+    wavelengths(wavelengths.Length));
 
 % get a spectrum
 spectrometer.integrationTimeMS = 100;
@@ -31,3 +34,6 @@ spectrum = spectrometer.getSpectrum();
 
 % graph the spectrum
 plot(wavelengths, spectrum);
+
+% close the driver (should shutdown laser, etc cleanly)
+driver.closeAllSpectrometers()
