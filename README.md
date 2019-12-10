@@ -1,18 +1,48 @@
-![diagram view](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/sample.png "Sample IDE")
+![sample view](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/sample.png "Sample IDE")
+
 # Overview
 
 MATLAB demos and solutions using Wasatch Photonics spectrometers.
 
+# Application Notes
+
+MATLAB has the interesting behavior that, after instantiating a 
+WasatchNET.Spectrometer (or any .NET object, presumably), as soon as the CPU has 
+some idle time (the user is not immediately running new commands, or ends the 
+instantiation without a semicolon), the IDE appears to automatically traverse 
+every Property "get" accessor in the order they are declared in the .NET Assembly 
+(e.g., WasatchNET/Spectrometer.cs).  
+
+You can see these Property gettor calls in the Wasatch.NET debug log.  They are 
+mostly in alphabetical order, but a few unordered calls support the notion that 
+they are called in source code declaration order.
+
 # Dependencies
 
-The MATLAB demo requires the following DLLs, both available from 
-[Wasatch.NET](https://github.com/WasatchPhotonics/Wasatch.NET/tree/master/lib):
+The MATLAB demo requires a current release of Wasatch.NET (2.1.4 or later), 
+provided separately:
 
-* WasatchNET.dll
-* LibUsbDotNet.dll
+- https://github.com/WasatchPhotonics/Wasatch.NET
 
-It also requires .INF files to associate Wasatch Photonics spectrometers
-with LibUSB.NET.  Right now, the easiest way to do that is to install
-Enlighten or Dash, one of our standard spectroscopy GUIs.
+# Common Errors
 
-![panel view](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/script.png "Demo Script")
+## "Attempting to load FTD2XX.DLL from: C:\Program Files\Wasatch Photonics\Wasatch.NET"
+
+The Wasatch.NET driver includes FTDI drivers for SPI-only "embedded" 
+spectrometers.  WasatchNET.Driver.openAllSpectometers _should_ internally perform 
+an encapsulated, temporary and non-invasive directory change when loading FTDI 
+drivers to test for the presence of an Adafruit SPI-to-USB adapter.
+
+However, if you see this error message in a pop-up dialog, you may need to 
+manually 'cd' to C:\Program Files\Wasatch Photonics\Wasatch.NET or equivalent so 
+that FTD2XX.dll and related files can be found.  (You're free to 'cd' back to 
+wherever you want after openAllSpectrometers() completes.)
+
+# History
+
+- 2019-12-09
+    - resolved secondaryADC issues (Wasatch.NET 2.1.4)
+- 2019-12-06
+    - updated for Wasatch.NET 2.1.3 after testing with MATLAB 2019b Update 2 (64-bit)
+
+![script view](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/script.png "Demo Script")
