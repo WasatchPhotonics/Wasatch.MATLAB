@@ -17,7 +17,7 @@ driver.logger.level = WasatchNET.LogLevel.DEBUG;
 numberOfSpectrometers = driver.openAllSpectrometers();
 fprintf('%d spectrometers found.\n', numberOfSpectrometers);
 if numberOfSpectrometers <= 0
-	return
+    return
 end
 
 % open the first spectrometer found
@@ -32,17 +32,19 @@ fprintf('Found %s %s with %d pixels (%.2f, %.2fnm)\n', ...
     char(spectrometer.model), char(spectrometer.serialNumber), pixels, wavelengths(1), wavelengths(wavelengths.Length));
 fprintf('Spectrometer has FW %s and FPGA %s\n', spectrometer.firmwareRevision, spectrometer.fpgaRevision);
 
-% configure 2D ROI
+% configure acquisition parameters
 spectrometer.integrationTimeMS = 100;
 spectrometer.detectorGain = 30;
 spectrometer.fastAreaScan = false;
+
+% configure 2D ROI
 spectrometer.detectorStartLine = 100;
 spectrometer.detectorStopLine = 1001;
 spectrometer.areaScanEnabled = true;
 
+% load area scan data
 lines = spectrometer.detectorStopLine - spectrometer.detectorStartLine - 1;
 image = zeros(lines, pixels);
-pause('on');
 for line = spectrometer.detectorStartLine:(spectrometer.detectorStopLine - 1)
     spectrum = int32(spectrometer.getSpectrum());
     if length(spectrum) == 0

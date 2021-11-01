@@ -41,7 +41,9 @@ wherever you want after openAllSpectrometers() completes.)
 # History
 
 - 2021-11-01
-    - added AreaScanFast (Hamamatsu), tested with Wasatch.NET 2.3.6 and MATLAB 2021b
+    - added AreaScanSlow (SiG), tested with Wasatch.NET 2.3.37 and MATLAB 2021b
+- 2021-11-01
+    - added AreaScanFast (Hamamatsu), tested with Wasatch.NET 2.3.36 and MATLAB 2021b
 - 2019-12-10
     - updated .m script
 - 2019-12-09
