@@ -40,6 +40,8 @@ wherever you want after openAllSpectrometers() completes.)
 
 # History
 
+- 2021-11-01
+    - added AreaScanFast (Hamamatsu), tested with Wasatch.NET 2.3.6 and MATLAB 2021b
 - 2019-12-10
     - updated .m script
 - 2019-12-09
@@ -47,4 +49,4 @@ wherever you want after openAllSpectrometers() completes.)
 - 2019-12-06
     - updated for Wasatch.NET 2.1.3 after testing with MATLAB 2019b Update 2 (64-bit)
 
-![script view](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/script.png "Demo Script")
+![area scan](https://github.com/WasatchPhotonics/Wasatch.MATLAB/raw/master/screenshots/AreaScanFast.png "Area Scan Fast")
