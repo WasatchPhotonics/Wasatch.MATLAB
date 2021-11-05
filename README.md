@@ -40,6 +40,8 @@ wherever you want after openAllSpectrometers() completes.)
 
 # History
 
+- 2021-11-05
+    - updated AreaScanSlow image line indexing
 - 2021-11-01
     - added AreaScanSlow (SiG), tested with Wasatch.NET 2.3.37 and MATLAB 2021b
 - 2021-11-01

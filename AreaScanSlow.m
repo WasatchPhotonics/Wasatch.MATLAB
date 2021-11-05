@@ -17,7 +17,7 @@ driver.logger.level = WasatchNET.LogLevel.DEBUG;
 numberOfSpectrometers = driver.openAllSpectrometers();
 fprintf('%d spectrometers found.\n', numberOfSpectrometers);
 if numberOfSpectrometers <= 0
-    return
+    return;
 end
 
 % open the first spectrometer found
@@ -37,29 +37,32 @@ spectrometer.integrationTimeMS = 100;
 spectrometer.detectorGain = 30;
 spectrometer.fastAreaScan = false;
 
-% configure 2D ROI
-spectrometer.detectorStartLine = 100;
-spectrometer.detectorStopLine = 1001;
+% define ROI
+startLine = 200;
+stopLine = 801;
+lines = stopLine - startLine - 1;
+
+% configure ROI in spectrometer
+spectrometer.detectorStartLine = startLine;
+spectrometer.detectorStopLine = stopLine;
 spectrometer.areaScanEnabled = true;
 
 % load area scan data
-lines = spectrometer.detectorStopLine - spectrometer.detectorStartLine - 1;
 image = zeros(lines, pixels);
-for line = spectrometer.detectorStartLine:(spectrometer.detectorStopLine - 1)
+for line = startLine:(stopLine - 1)
     spectrum = int32(spectrometer.getSpectrum());
     if length(spectrum) == 0
         fprintf('read zero pixels on line %d of (%d, %d)\n', ...
-            line, spectrometer.detectorStartLine, spectrometer.detectorStopLine);
+            line, startLine, stopLine);
         break;
     end
 
-    index = spectrum(1) + 1;
+    detector_row = spectrum(1);
+    image_row = detector_row - startLine + 1;
     spectrum(1) = spectrum(2);
-    if mod(line, 10) == 0
-        fprintf('read line %d (received index %d)\n', line, index);
-    end
-    
-    image(index, :) = spectrum;
+    fprintf('read line %4d (should match detector_row %4d, image_row %4d)\n', line, detector_row, image_row);
+   
+    image(image_row, :) = spectrum;
 end
 
 % display the area scan image
@@ -67,4 +70,4 @@ figure;
 imshow(mat2gray(image));
 
 % close the driver
-driver.closeAllSpectrometers()
+driver.closeAllSpectrometers();
