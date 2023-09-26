@@ -21,7 +21,7 @@ spectrometer = driver.getSpectrometer(0);
 
 % set isAndor 'true' to load a virtual EEPROM file for an XL-Series 
 % spectrometer with Andor camera
-isAndor = true;
+isAndor = false;
 if isAndor
     [file, path] = uigetfile("*.json");
     if ~isequal(file, 0)
