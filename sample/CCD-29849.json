@@ -1,0 +1,10 @@
+{
+    "detector_serial_number": "CCD-29849",
+    "detector_type": "iDus",
+    "wavelength_coeffs": [ 788.8463, 0.08049988, 0.00000110116, -0.000000003128798, 0.0000000000003436004 ],
+    "excitation_nm_float": 785,
+    "wp_serial_number": "WP-01491",
+    "wp_model": "WP-785XL-F15-SR-IC",
+    "invert_x_axis": false,
+    "raman_intensity_coeffs": [ 0.1982983, -0.002892479, 0.000006054328, -0.0000000059756, 0.00000000000285258, -0.0000000000000005095422 ]
+}
