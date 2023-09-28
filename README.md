@@ -19,10 +19,11 @@ they are called in source code declaration order.
 
 # Dependencies
 
-The MATLAB demo requires a current release of Wasatch.NET (2.1.4 or later), 
-provided separately:
+The MATLAB demo requires a current release of Wasatch.NET, provided separately:
 
 - https://github.com/WasatchPhotonics/Wasatch.NET
+
+(Last tested with 2.4.14)
 
 # Common Errors
 
@@ -40,6 +41,8 @@ wherever you want after openAllSpectrometers() completes.)
 
 # History
 
+- 2023-09-26
+    - show how to load virtual EEPROM from JSON (sample/*.json)
 - 2021-11-05
     - updated AreaScanSlow image line indexing
 - 2021-11-01
